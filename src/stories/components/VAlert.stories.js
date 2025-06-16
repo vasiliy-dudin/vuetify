@@ -1,4 +1,4 @@
-/** @type { import('@storybook/vue3').Meta } */
+/** @type { import('@storybook/vue3-vite').Meta } */
 const meta = {
   title: "Components/VAlert",
   tags: ["autodocs"],

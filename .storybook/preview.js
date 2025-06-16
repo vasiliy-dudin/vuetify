@@ -1,4 +1,4 @@
-import { setup } from '@storybook/vue3'
+import { setup } from '@storybook/vue3-vite'
 import { ref } from 'vue'
 
 import { decorators } from './preview-setup'
@@ -11,7 +11,7 @@ setup((app) => {
   app.config.globalProperties.$ref = ref
 })
 
-/** @type { import('@storybook/vue3').Preview } */
+/** @type { import('@storybook/vue3-vite').Preview } */
 const preview = {
   decorators,
   parameters: {

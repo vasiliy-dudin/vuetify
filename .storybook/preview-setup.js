@@ -1,5 +1,5 @@
 import { h } from "vue";
-import { setup } from "@storybook/vue3";
+import { setup } from "@storybook/vue3-vite";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";

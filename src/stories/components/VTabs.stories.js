@@ -1,4 +1,4 @@
-/** @type { import('@storybook/vue3').Meta } */
+/** @type { import('@storybook/vue3-vite').Meta } */
 const meta = {
   title: "Components/VTabs",
   tags: ["autodocs"],
@@ -21,74 +21,45 @@ const meta = {
         defaultValue: { summary: "undefined" }
       }
     },
-    sliderColor: {
-      control: "text",
-      description: "Применяет цвет к ползунку активной вкладки",
-      table: {
-        category: "Внешний вид",
-        defaultValue: { summary: "undefined" }
-      }
-    },
-    
-    // Макет
-    align: {
-      control: "select",
-      options: ["start", "center", "end"],
-      description: "Выравнивание вкладок",
-      table: {
-        category: "Макет",
-        defaultValue: { summary: "start" }
-      }
-    },
-    fixedTabs: {
-      control: "boolean",
-      description: "Делает ширину вкладок фиксированной",
-      table: {
-        category: "Макет",
-        defaultValue: { summary: false }
-      }
-    },
-    grow: {
-      control: "boolean",
-      description: "Заставляет вкладки занимать все доступное пространство",
-      table: {
-        category: "Макет",
-        defaultValue: { summary: false }
-      }
-    },
     density: {
       control: "select",
       options: ["default", "comfortable", "compact"],
       description: "Регулирует плотность вкладок",
       table: {
-        category: "Макет",
+        category: "Внешний вид",
         defaultValue: { summary: "default" }
       }
     },
     height: {
-      control: { type: "range", min: 0, max: 128, step: 4 },
+      control: ["text", "number"],
       description: "Устанавливает высоту вкладок",
       table: {
-        category: "Макет",
-        defaultValue: { summary: 48 }
+        category: "Внешний вид",
+        defaultValue: { summary: "undefined" }
       }
     },
-    
-    // Поведение
-    direction: {
+    alignTabs: {
       control: "select",
-      options: ["horizontal", "vertical"],
-      description: "Устанавливает направление вкладок",
+      options: ["start", "center", "end", "title"],
+      description: "Выравнивание вкладок",
       table: {
-        category: "Поведение",
-        defaultValue: { summary: "horizontal" }
+        category: "Внешний вид",
+        defaultValue: { summary: "start" }
       }
     },
-    centerActive: {
+    fixedTabs: {
       control: "boolean",
-      description: "Центрирует активную вкладку",
+      description: "Фиксированная ширина вкладок",
       table: {
-        category: "Поведение",
+        category: "Внешний вид",
+        defaultValue: { summary: false }
+      }
+    },
+    grow: {
+      control: "boolean",
+      description: "Вкладки занимают всю доступную ширину",
+      table: {
+        category: "Внешний вид",
         defaultValue: { summary: false }
       }
     },
@@ -96,91 +67,122 @@ const meta = {
       control: "boolean",
       description: "Скрывает ползунок активной вкладки",
       table: {
+        category: "Внешний вид",
+        defaultValue: { summary: false }
+      }
+    },
+    sliderColor: {
+      control: "text",
+      description: "Цвет ползунка активной вкладки",
+      table: {
+        category: "Внешний вид",
+        defaultValue: { summary: "undefined" }
+      }
+    },
+    
+    // Поведение
+    modelValue: {
+      control: ["text", "number"],
+      description: "Значение активной вкладки",
+      table: {
+        category: "Поведение",
+        defaultValue: { summary: "undefined" }
+      }
+    },
+    direction: {
+      control: "select",
+      options: ["horizontal", "vertical"],
+      description: "Направление вкладок",
+      table: {
+        category: "Поведение",
+        defaultValue: { summary: "horizontal" }
+      }
+    },
+    nextIcon: {
+      control: "text",
+      description: "Иконка для кнопки следующей вкладки",
+      table: {
+        category: "Поведение",
+        defaultValue: { summary: "$next" }
+      }
+    },
+    prevIcon: {
+      control: "text",
+      description: "Иконка для кнопки предыдущей вкладки",
+      table: {
+        category: "Поведение",
+        defaultValue: { summary: "$prev" }
+      }
+    },
+    showArrows: {
+      control: ["boolean", "string"],
+      description: "Показывает стрелки для прокрутки вкладок",
+      table: {
         category: "Поведение",
         defaultValue: { summary: false }
       }
     },
-    modelValue: {
-      control: "text",
-      description: "Текущая активная вкладка",
+    
+    // Состояние
+    disabled: {
+      control: "boolean",
+      description: "Отключает вкладки",
       table: {
-        category: "Поведение"
+        category: "Состояние",
+        defaultValue: { summary: false }
+      }
+    },
+    mandatory: {
+      control: "boolean",
+      description: "Требует выбора вкладки",
+      table: {
+        category: "Состояние",
+        defaultValue: { summary: true }
       }
     },
     
-    // Опции
-    showArrows: {
-      control: "select",
-      options: [false, true, "always", "desktop", "mobile"],
-      description: "Показывает стрелки для прокрутки вкладок",
+    // Макет
+    centered: {
+      control: "boolean",
+      description: "Центрирует вкладки",
       table: {
-        category: "Опции",
+        category: "Макет",
         defaultValue: { summary: false }
       }
     },
-    tabCount: {
-      control: { type: "range", min: 1, max: 10, step: 1 },
-      description: "Количество вкладок",
-      table: {
-        category: "Опции"
-      }
-    },
-    withIcons: {
+    stacked: {
       control: "boolean",
-      description: "Добавляет иконки к вкладкам",
+      description: "Отображает иконки и текст в столбец",
       table: {
-        category: "Опции",
+        category: "Макет",
         defaultValue: { summary: false }
-      }
-    },
-    withContent: {
-      control: "boolean",
-      description: "Показывает содержимое вкладок",
-      table: {
-        category: "Опции",
-        defaultValue: { summary: true }
       }
     },
   },
   args: {
-    color: "primary",
+    color: "",
     bgColor: "",
-    sliderColor: "",
-    align: "start",
+    density: "default",
+    height: "",
+    alignTabs: "start",
     fixedTabs: false,
     grow: false,
-    density: "default",
-    height: 48,
-    direction: "horizontal",
-    centerActive: false,
     hideSlider: false,
+    sliderColor: "",
     modelValue: 0,
+    direction: "horizontal",
+    nextIcon: "$next",
+    prevIcon: "$prev",
     showArrows: false,
-    tabCount: 5,
-    withIcons: false,
-    withContent: true
+    disabled: false,
+    mandatory: true,
+    centered: false,
+    stacked: false
   },
   render: (args) => ({
     setup() {
       const tab = ref(args.modelValue);
-      
-      const getTabs = () => {
-        const tabs = [];
-        const icons = ["mdi-home", "mdi-account", "mdi-bell", "mdi-cog", "mdi-heart", 
-                      "mdi-camera", "mdi-map", "mdi-clock", "mdi-cloud", "mdi-play"];
-        
-        for (let i = 0; i < args.tabCount; i++) {
-          tabs.push({
-            title: `Вкладка ${i + 1}`,
-            icon: icons[i],
-            content: `Содержимое вкладки ${i + 1}. Это пример текста, который можно увидеть в панели вкладок.`
-          });
-        }
-        
-        return tabs;
-      };
-      
-      return { args, tab, getTabs };
+      return { args, tab };
     },
     template: `
       <v-app>
@@ -188,35 +190,49 @@ const meta = {
           <v-container>
             <v-card>
               <v-tabs
-                v-bind="args"
                 v-model="tab"
-                :direction="args.direction"
-                :align="args.align"
+                :color="args.color"
+                :bg-color="args.bgColor"
+                :density="args.density"
+                :height="args.height"
+                :align-tabs="args.alignTabs"
                 :fixed-tabs="args.fixedTabs"
                 :grow="args.grow"
-                :center-active="args.centerActive"
-                :height="args.height"
                 :hide-slider="args.hideSlider"
+                :slider-color="args.sliderColor"
+                :direction="args.direction"
+                :next-icon="args.nextIcon"
+                :prev-icon="args.prevIcon"
                 :show-arrows="args.showArrows"
+                :disabled="args.disabled"
+                :mandatory="args.mandatory"
+                :centered="args.centered"
+                :stacked="args.stacked"
               >
-                <v-tab
-                  v-for="(item, index) in getTabs()"
-                  :key="index"
-                  :value="index"
-                >
-                  <v-icon v-if="args.withIcons" :icon="item.icon" class="mr-2"></v-icon>
-                  {{ item.title }}
-                </v-tab>
+                <v-tab value="0">Вкладка 1</v-tab>
+                <v-tab value="1">Вкладка 2</v-tab>
+                <v-tab value="2">Вкладка 3</v-tab>
               </v-tabs>
               
-              <v-window v-if="args.withContent" v-model="tab">
-                <v-window-item
-                  v-for="(item, index) in getTabs()"
-                  :key="index"
-                  :value="index"
-                >
+              <v-window v-model="tab">
+                <v-window-item value="0">
                   <v-card-text>
-                    {{ item.content }}
+                    <p>Содержимое первой вкладки</p>
+                    <p>Здесь может быть любой контент.</p>
+                  </v-card-text>
+                </v-window-item>
+                
+                <v-window-item value="1">
+                  <v-card-text>
+                    <p>Содержимое второй вкладки</p>
+                    <p>Здесь может быть любой контент.</p>
+                  </v-card-text>
+                </v-window-item>
+                
+                <v-window-item value="2">
+                  <v-card-text>
+                    <p>Содержимое третьей вкладки</p>
+                    <p>Здесь может быть любой контент.</p>
                   </v-card-text>
                 </v-window-item>
               </v-window>
@@ -231,64 +247,42 @@ const meta = {
 export default meta;
 
 export const Default = {
-  args: {
-    tabCount: 5
-  }
+  args: {}
 };
 
-export const WithIcons = {
+export const Colored = {
   args: {
-    withIcons: true,
-    tabCount: 5
+    color: "primary"
   }
 };
 
 export const Centered = {
   args: {
-    align: "center",
-    tabCount: 3
+    centered: true
   }
 };
 
 export const Growing = {
   args: {
-    grow: true,
-    tabCount: 4
+    grow: true
+  }
+};
+
+export const WithArrows = {
+  args: {
+    showArrows: true
   }
 };
 
 export const Vertical = {
   args: {
     direction: "vertical",
-    tabCount: 5
+    height: 300
   }
 };
 
-export const Sliding = {
+export const Stacked = {
   args: {
-    tabCount: 10,
-    showArrows: true
+    stacked: true
   }
 };
-
-export const FixedWidth = {
-  args: {
-    fixedTabs: true,
-    tabCount: 4
-  }
-};
-
-export const DifferentColors = {
-  args: {
-    color: "success",
-    sliderColor: "warning",
-    tabCount: 3
-  }
-};
-
-export const Dense = {
-  args: {
-    density: "compact",
-    tabCount: 5
-  }
-}; 
